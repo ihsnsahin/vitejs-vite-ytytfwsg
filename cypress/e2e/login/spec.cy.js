@@ -11,7 +11,7 @@ describe('Login Form', () => {
 };
     beforeEach(function () {
     cy.visit('http://localhost:5173/');
-  });
+    });
     it('should allow a user to login', () => {
         //arrange
         //act
@@ -27,8 +27,20 @@ describe('Login Form', () => {
         //act
         cy.get('[data-cy="input-email"]').type("ihsansahin777");
         //assert
+        cy.get('[data-cy="error"]').should("have.length", 1);
         cy.contains(errorMessages.email).should("be.visible");
         cy.get('[data-cy="submit"]').should('be.disabled')
     });
-   
+    it('should be an email error message, and the button and the password should be disabled', () => {
+        //arrange
+        //act
+        cy.get('[data-cy="input-email"]').type("ihsansahin777");
+        cy.get('[data-cy="input-password"]').type("1321asas");
+
+        //assert
+        cy.get('[data-cy="error"]').should("have.length", 2);
+        cy.contains(errorMessages.email).should("be.visible");
+        cy.contains("at least 8 characters").should("be.visible");
+        cy.get('[data-cy="submit"]').should('be.disabled')
+    });
 });
