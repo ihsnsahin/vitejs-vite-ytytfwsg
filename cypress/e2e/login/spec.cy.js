@@ -43,4 +43,14 @@ describe('Login Form', () => {
         cy.contains("at least 8 characters").should("be.visible");
         cy.get('[data-cy="submit"]').should('be.disabled')
     });
+    it("The button should be disabled until the terms are checked"
+, () => {
+        //arrange
+        //act
+        cy.get('[data-cy="input-email"]').type(user.email);
+        cy.get('[data-cy="input-password"]').type(user.pass);
+
+        //assert
+        cy.get('[data-cy="submit"]').should('be.disabled')
+    });
 });
