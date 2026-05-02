@@ -118,14 +118,14 @@ export default function Login() {
               invalid={errors.email}
               data-cy="input-email"
             />
-            {errors.email && <FormFeedback>{errorMessages.emai}</FormFeedback>}
+            {errors.email && <FormFeedback>{errorMessages.email}</FormFeedback>}
           </FormGroup>
           <FormGroup>
             <Label for="examplePassword">Password</Label>
             <Input
               id="examplePassword"
               name="password"
-              placeholder="Enter your password "
+              placeholder="Enter your password"
               type="password"
               onChange={handleChange}
               value={form.password}
